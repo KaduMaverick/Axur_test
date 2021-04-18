@@ -4,96 +4,98 @@ import React, {
   ReactNode,
   useEffect,
   useMemo,
-  useReducer
-} from 'react'
-const CACHED_KEY = 'crawl-context-state';
-export const CrawlContext = createContext({} as ICrawlContext)
+  useReducer,
+} from "react";
+const CACHED_KEY = "crawl-context-state";
+export const CrawlContext = createContext({} as ICrawlContext);
 
 interface ICrawlContextProvider {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const initialState = {
-  terms: []
-}
+  terms: [],
+};
 
-type CrawlAction = {
-  type: 'addTerm'; term: object
-} | {
-  type: 'updateTermUrls'; termId: string; urls: string[]
-}
- | {
-  type: 'updateWholeState'; cachedState: object;
-}
+type CrawlAction =
+  | {
+      type: "addTerm";
+      term: object;
+    }
+  | {
+      type: "updateTermUrls";
+      termId: string;
+      urls: string[];
+    }
+  | {
+      type: "updateWholeState";
+      cachedState: object;
+    };
 
 function crawlReducer(state: any, action: CrawlAction) {
   switch (action.type) {
-    case 'addTerm': {
+    case "addTerm": {
       return {
         ...state,
-        terms: [...state.terms, action.term]
-      }
+        terms: [...state.terms, action.term],
+      };
     }
-    case 'updateWholeState': {
+    case "updateWholeState": {
       return {
-        ...action.cachedState
-      }
+        ...action.cachedState,
+      };
     }
     default: {
-      console.log("default")
-      return { ...state, }
+      console.log("default");
+      return { ...state };
     }
   }
 }
 
-const CrawlContextProvider: FunctionComponent<ICrawlContextProvider> = ({ children }) => {
-  const [state, dispatch] = useReducer(crawlReducer, initialState)
+const CrawlContextProvider: FunctionComponent<ICrawlContextProvider> = ({
+  children,
+}) => {
+  const [state, dispatch] = useReducer(crawlReducer, initialState);
   const { terms } = state;
 
   useEffect(() => {
-    const chachedState = localStorage.getItem(CACHED_KEY)
+    const chachedState = localStorage.getItem(CACHED_KEY);
     if (chachedState) {
-      dispatch({ type: "updateWholeState", cachedState: JSON.parse(chachedState)})
+      dispatch({
+        type: "updateWholeState",
+        cachedState: JSON.parse(chachedState),
+      });
     }
-  },[])
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem(CACHED_KEY, JSON.stringify(state)) 
-  })
+    localStorage.setItem(CACHED_KEY, JSON.stringify(state));
+  });
 
   const ctx: ICrawlContext = useMemo(
-    () => (
-      {
-        terms,
-        dispatch
-      }
-    ),
-    [
+    () => ({
       terms,
-      dispatch
-    ]
-  )
+      dispatch,
+    }),
+    [terms, dispatch]
+  );
 
-  return (
-    <CrawlContext.Provider value={ctx}>
-      {children}
-    </CrawlContext.Provider>
-  )
-}
+  return <CrawlContext.Provider value={ctx}>{children}</CrawlContext.Provider>;
+};
 
 const useCrawlContext = (): ICrawlContext => {
-  const context = React.useContext(CrawlContext)
+  const context = React.useContext(CrawlContext);
   if (context === undefined) {
-    throw new Error('useCrawlContext must be used within a CrawlContextProvider')
+    throw new Error(
+      "useCrawlContext must be used within a CrawlContextProvider"
+    );
   }
-  return context
-}
+  return context;
+};
 
-export { CrawlContextProvider, useCrawlContext }
+export { CrawlContextProvider, useCrawlContext };
 
 export interface ICrawlContext {
-  terms: any
-  dispatch: React.Dispatch<CrawlAction>
+  terms: any;
+  dispatch: React.Dispatch<CrawlAction>;
 }
-
-

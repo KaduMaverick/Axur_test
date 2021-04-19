@@ -1,4 +1,4 @@
-import { useCrawlContext } from "../../CrawlContext";
+import { useCrawlContext } from "../../context/crawlerContext/CrawlContext";
 import { TermInfo } from "../TermInfo";
 import { Container } from "./styles";
 
@@ -8,7 +8,7 @@ export function TermList() {
   return (
     <>
       <Container>
-        {terms.map((term: any) => (
+        {terms.map((term) => (
           <TermInfo term={term} />
         ))}
       </Container>

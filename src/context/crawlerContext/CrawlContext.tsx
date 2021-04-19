@@ -6,69 +6,37 @@ import React, {
   useMemo,
   useReducer,
 } from "react";
-const CACHED_KEY = "crawl-context-state";
+import {
+  CRAWLER_CACHED_KEY,
+  UPDATE_WHOLE_STATE,
+} from "../../constants/crawler";
+import { Term } from "../../shared/interfaces/crawler.interface";
+import { CrawlAction, crawlInitialState, crawlReducer } from "./crawlerReducer";
+
 export const CrawlContext = createContext({} as ICrawlContext);
 
 interface ICrawlContextProvider {
   children: ReactNode;
 }
 
-const initialState = {
-  terms: [],
-};
-
-type CrawlAction =
-  | {
-      type: "addTerm";
-      term: object;
-    }
-  | {
-      type: "updateTermUrls";
-      termId: string;
-      urls: string[];
-    }
-  | {
-      type: "updateWholeState";
-      cachedState: object;
-    };
-
-function crawlReducer(state: any, action: CrawlAction) {
-  switch (action.type) {
-    case "addTerm": {
-      return {
-        ...state,
-        terms: [...state.terms, action.term],
-      };
-    }
-    case "updateWholeState": {
-      return {
-        ...action.cachedState,
-      };
-    }
-    default: {
-      return { ...state };
-    }
-  }
-}
-
 const CrawlContextProvider: FunctionComponent<ICrawlContextProvider> = ({
   children,
 }) => {
-  const [state, dispatch] = useReducer(crawlReducer, initialState);
+  const [state, dispatch] = useReducer(crawlReducer, crawlInitialState);
   const { terms } = state;
 
   useEffect(() => {
-    const chachedState = localStorage.getItem(CACHED_KEY);
+    const chachedState = localStorage.getItem(CRAWLER_CACHED_KEY);
     if (chachedState) {
       dispatch({
-        type: "updateWholeState",
+        type: UPDATE_WHOLE_STATE,
         cachedState: JSON.parse(chachedState),
       });
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(CACHED_KEY, JSON.stringify(state));
+    localStorage.setItem(CRAWLER_CACHED_KEY, JSON.stringify(state));
   });
 
   const ctx: ICrawlContext = useMemo(
@@ -95,6 +63,6 @@ const useCrawlContext = (): ICrawlContext => {
 export { CrawlContextProvider, useCrawlContext };
 
 export interface ICrawlContext {
-  terms: any;
+  terms: Term[];
   dispatch: React.Dispatch<CrawlAction>;
 }

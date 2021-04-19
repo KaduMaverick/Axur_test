@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
-import { useCrawlContext } from "../../CrawlContext";
+import { useCrawlContext } from "../../context/crawlerContext/CrawlContext";
 import { postCrawlTerm } from "../../services/crawlService";
+import { Term } from "../../shared/interfaces/crawler.interface";
 import { SearchContainer, SearchInput } from "./styles";
 
 export const Search = () => {
@@ -8,7 +9,7 @@ export const Search = () => {
   const { terms, dispatch } = useCrawlContext();
 
   const hasAlreadyBeenSearched = (): boolean =>
-    terms.map((term: any) => term.keyword).includes(value.trim());
+    terms.map((term: Term) => term.keyword).includes(value.trim());
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -18,9 +19,6 @@ export const Search = () => {
       console.warn(`The term ${value.trim()} has already been crawled`);
       return;
     }
-
-
-    
 
     postCrawlTerm(value.trim()).then((crawlResponse) =>
       dispatch({ type: "addTerm", term: { ...crawlResponse, keyword: value } })

@@ -1,9 +1,9 @@
-import { useCrawlContext } from "../../context/crawlerContext/CrawlContext";
+import { useCrawlerContext } from "../../context/crawlerContext/CrawlerContext";
 import { TermInfo } from "../TermInfo";
 import { Container } from "./styles";
 
 export function TermList() {
-  const { terms } = useCrawlContext();
+  const { terms } = useCrawlerContext();
 
   return (
     <>

@@ -3,4 +3,5 @@ export interface Term {
   keyword: string;
   status?: number;
   message: string;
+  urls?: string[];
 }

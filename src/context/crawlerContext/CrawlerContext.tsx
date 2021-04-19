@@ -13,13 +13,13 @@ import {
 import { Term } from "../../shared/interfaces/crawler.interface";
 import { CrawlAction, crawlInitialState, crawlReducer } from "./crawlerReducer";
 
-export const CrawlContext = createContext({} as ICrawlContext);
+export const CrawlerContext = createContext({} as ICrawlerContext);
 
-interface ICrawlContextProvider {
+interface ICrawlerContextProvider {
   children: ReactNode;
 }
 
-const CrawlContextProvider: FunctionComponent<ICrawlContextProvider> = ({
+const CrawlerContextProvider: FunctionComponent<ICrawlerContextProvider> = ({
   children,
 }) => {
   const [state, dispatch] = useReducer(crawlReducer, crawlInitialState);
@@ -39,7 +39,7 @@ const CrawlContextProvider: FunctionComponent<ICrawlContextProvider> = ({
     localStorage.setItem(CRAWLER_CACHED_KEY, JSON.stringify(state));
   });
 
-  const ctx: ICrawlContext = useMemo(
+  const ctx: ICrawlerContext = useMemo(
     () => ({
       terms,
       dispatch,
@@ -47,22 +47,24 @@ const CrawlContextProvider: FunctionComponent<ICrawlContextProvider> = ({
     [terms, dispatch]
   );
 
-  return <CrawlContext.Provider value={ctx}>{children}</CrawlContext.Provider>;
+  return (
+    <CrawlerContext.Provider value={ctx}>{children}</CrawlerContext.Provider>
+  );
 };
 
-const useCrawlContext = (): ICrawlContext => {
-  const context = React.useContext(CrawlContext);
+const useCrawlerContext = (): ICrawlerContext => {
+  const context = React.useContext(CrawlerContext);
   if (context === undefined) {
     throw new Error(
-      "useCrawlContext must be used within a CrawlContextProvider"
+      "useCrawlerContext must be used within a CrawlerContextProvider"
     );
   }
   return context;
 };
 
-export { CrawlContextProvider, useCrawlContext };
+export { CrawlerContextProvider, useCrawlerContext };
 
-export interface ICrawlContext {
+export interface ICrawlerContext {
   terms: Term[];
   dispatch: React.Dispatch<CrawlAction>;
 }

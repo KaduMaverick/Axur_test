@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
-// import { useCrawlContext } from '../../CrawlContext'
+// import { useCrawlerContext } from '../../CrawlContext'
 import { getCrawlTerm } from "../../services/crawlService";
+import { Term } from "../../shared/interfaces/crawler.interface";
 
 interface ITermInfo {
-  term: any;
+  term: Term;
 }
 
 export const TermInfo: React.FC<ITermInfo> = ({ term }) => {
   const [urls, setUrls] = useState(term.urls);
   const [pollingInterval, setPollingInterval] = useState(3000);
+
   const { data } = useSWR(term.id, getCrawlTerm, {
     revalidateOnFocus: false,
     refreshInterval: pollingInterval,

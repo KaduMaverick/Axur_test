@@ -1,12 +1,12 @@
 import { FormEvent, useState } from "react";
-import { useCrawlContext } from "../../context/crawlerContext/CrawlContext";
+import { useCrawlerContext } from "../../context/crawlerContext/CrawlerContext";
 import { postCrawlTerm } from "../../services/crawlService";
 import { Term } from "../../shared/interfaces/crawler.interface";
 import { SearchContainer, SearchInput } from "./styles";
 
 export const Search = () => {
   const [value, setValue] = useState("");
-  const { terms, dispatch } = useCrawlContext();
+  const { terms, dispatch } = useCrawlerContext();
 
   const hasAlreadyBeenSearched = (): boolean =>
     terms.map((term: Term) => term.keyword).includes(value.trim());

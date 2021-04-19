@@ -24,7 +24,9 @@ export const LanguagueBtn = styled.button`
   line-height: 22px;
   border: none;
   padding: 6px;
-  color: #555555;
+        color: #555555;
+
+
   font-weight:600;
   background: none;
   margin: 0 3px;

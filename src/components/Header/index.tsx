@@ -1,12 +1,18 @@
-import React from 'react';
-import axurLogo from '../../assets/axurLogo.svg';
-import {Header, LogoContainer, LogoImg, LanguagueBtn, LanguagesBtnWrapper, HeaderContainer} from './styles'
+import React from "react";
+import axurLogo from "../../assets/axurLogo.svg";
+import {
+  Header,
+  LogoContainer,
+  LogoImg,
+  LanguagueBtn,
+  LanguagesBtnWrapper,
+  HeaderContainer,
+} from "./styles";
 
-export  function PageHeader() {
+export function PageHeader() {
   return (
     <Header>
       <HeaderContainer>
-
         <LogoContainer>
           <LogoImg src={axurLogo} />
         </LogoContainer>
@@ -16,8 +22,7 @@ export  function PageHeader() {
           <LanguagueBtn>EN</LanguagueBtn>
           <LanguagueBtn>ES</LanguagueBtn>
         </LanguagesBtnWrapper>
-
       </HeaderContainer>
     </Header>
-  )
+  );
 }

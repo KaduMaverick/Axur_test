@@ -19,6 +19,9 @@ export const Search = () => {
       return;
     }
 
+
+    
+
     postCrawlTerm(value.trim()).then((crawlResponse) =>
       dispatch({ type: "addTerm", term: { ...crawlResponse, keyword: value } })
     );

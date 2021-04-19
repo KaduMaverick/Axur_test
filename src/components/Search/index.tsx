@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useCrawlerContext } from "../../context/crawlerContext/CrawlerContext";
-import { postCrawlTerm } from "../../services/crawlService";
+import { postCrawlTerm } from "../../services/crawlerService";
 import { Term } from "../../shared/interfaces/crawler.interface";
 import { SearchContainer, SearchInput } from "./styles";
 

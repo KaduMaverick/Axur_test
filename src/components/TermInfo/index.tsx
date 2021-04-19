@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 // import { useCrawlerContext } from '../../CrawlContext'
-import { getCrawlTerm } from "../../services/crawlService";
+import { getCrawlTerm } from "../../services/crawlerService";
 import { Term } from "../../shared/interfaces/crawler.interface";
 
 interface ITermInfo {

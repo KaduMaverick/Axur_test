@@ -46,7 +46,6 @@ function crawlReducer(state: any, action: CrawlAction) {
       };
     }
     default: {
-      console.log("default");
       return { ...state };
     }
   }

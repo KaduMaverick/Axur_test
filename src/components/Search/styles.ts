@@ -7,14 +7,13 @@ export const SearchContainer = styled.div`
 `
 
 export const SearchInput = styled.input`
-    background: none;
+    background: white;
+    width: 100%;
     border: none;
-    box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2),
-    -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 4px 4px 4px 4px  rgba(255, 255, 255, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.4);
     box-sizing: border-box;
     border-radius: 50px;
-    width: 280px;
     height: 60px;
     padding: 20px;
     
@@ -24,13 +23,20 @@ export const SearchInput = styled.input`
     font-size: 20px;
     line-height: 23px;
     color: #414B5A;
-    opacity: 0.4;
   }
 
   &:focus{
     border:none;
     outline: none;
-    box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2),
-    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: inset 4px 4px 4px 4px  rgba(255, 255, 255, 0.4);
   }
+`
+
+export const SearchInputMessage = styled.span`
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+  padding: 10px;
+  font-size: 12px;
+  color: red;
 `

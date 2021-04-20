@@ -63,7 +63,9 @@ export const TermInfo: React.FC<ITermInfo> = ({ term }) => {
         </Accordion>
       ) : (
         <div data-testid="urls-empty">
-          <TermInfoMessage>Sem Resultados</TermInfoMessage>
+          <TermInfoMessage>
+            {data?.status === "done" && "Sem Resultados"}
+          </TermInfoMessage>
         </div>
       )}
     </TermInfoCard>

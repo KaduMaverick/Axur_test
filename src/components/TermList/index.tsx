@@ -10,9 +10,12 @@ export function TermList() {
       <Container>
         <TermInfoHeading>Lista de Termos:</TermInfoHeading>
         <TermInfoContent>
-          {terms.map((term) => (
-            <TermInfo term={term} />
-          ))}
+          {terms
+            .slice(0)
+            .reverse()
+            .map((term) => (
+              <TermInfo term={term} />
+            ))}
         </TermInfoContent>
       </Container>
     </>

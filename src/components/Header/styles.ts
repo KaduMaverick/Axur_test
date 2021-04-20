@@ -10,13 +10,18 @@ export const HeaderContainer = styled.div`
  display: flex;
  justify-content: space-between;
 `
+
 export const LogoContainer = styled.div`
 
 `
 
-export const LogoImg = styled.img``
+export const LogoImg = styled.img`
 
-export const LanguagesBtnWrapper = styled.div``
+`
+
+export const LanguagesBtnWrapper = styled.div`
+
+`
 
 export const LanguagueBtn = styled.button`
   border: none;

@@ -3,6 +3,14 @@ import useSWR from "swr";
 // import { useCrawlerContext } from '../../CrawlContext'
 import { getCrawlTerm } from "../../services/crawlerService";
 import { Term } from "../../shared/interfaces/crawler.interface";
+import { Accordion } from "../Accordion";
+import {
+  TermInfoCard,
+  TermInfoCardHeading,
+  TermInfoLink,
+  TermInfoMessage,
+  TermInfoStatus,
+} from "./styles";
 
 interface ITermInfo {
   term: Term;
@@ -28,24 +36,36 @@ export const TermInfo: React.FC<ITermInfo> = ({ term }) => {
   }, [data]);
 
   return (
-    <div>
-      <h2>
-        Termo: {term.keyword} | status: <span>{data?.status}</span>
-      </h2>
-      {urls ? (
-        <div data-testid="urls-list">
-          links:
-          {urls.map((url: any, idx: number) => {
-            return (
-              <div key={idx} data-testid={"url"}>
-                {url}
-              </div>
-            );
-          })}
-        </div>
+    <TermInfoCard>
+      <TermInfoCardHeading>Termo: {term.keyword}</TermInfoCardHeading>
+      <TermInfoStatus>
+        {data?.status === "active" ? "Em progresso" : "Concluido"}
+      </TermInfoStatus>
+      {urls && urls.length ? (
+        <Accordion>
+          <div data-testid="urls-list">
+            {urls.map((url: any, idx: number) => {
+              return (
+                <>
+                  <TermInfoLink
+                    href={url}
+                    target="_blank"
+                    key={idx}
+                    data-testid={"url"}
+                  >
+                    {url}
+                  </TermInfoLink>
+                  <br />
+                </>
+              );
+            })}
+          </div>
+        </Accordion>
       ) : (
-        <div data-testid="urls-empty">There are no links</div>
+        <div data-testid="urls-empty">
+          <TermInfoMessage>Sem Resultados</TermInfoMessage>
+        </div>
       )}
-    </div>
+    </TermInfoCard>
   );
 };

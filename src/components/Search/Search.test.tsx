@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { Search } from "./index";
+import { Search } from "./Search";
 
 it("Renders correctly", () => {
   const { queryByTestId, queryByRole } = render(<Search />);

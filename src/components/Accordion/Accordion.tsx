@@ -4,7 +4,7 @@ import {
   AccordionContainer,
   AccordionContent,
   AccordionWrapper,
-} from "./styles";
+} from "./Accordion.styles";
 
 interface IAccordion {
   children: ReactNode;

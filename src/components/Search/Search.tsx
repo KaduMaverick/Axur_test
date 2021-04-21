@@ -2,7 +2,11 @@ import { FormEvent, useEffect, useState } from "react";
 import { useCrawlerContext } from "../../context/crawlerContext/CrawlerContext";
 import { postCrawlTerm } from "../../services/crawlerService";
 import { Term } from "../../shared/interfaces/crawler.interface";
-import { SearchContainer, SearchInput, SearchInputMessage } from "./styles";
+import {
+  SearchContainer,
+  SearchInput,
+  SearchInputMessage,
+} from "./Search.styles";
 
 export const Search = () => {
   const [value, setValue] = useState("");

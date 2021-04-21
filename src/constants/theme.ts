@@ -1,4 +1,4 @@
-const mq = {
+export const mq = {
   phone: {
     narrow: {
       minWidth: 0,
@@ -42,5 +42,3 @@ const mq = {
     },
   },
 };
-
-export { mq };

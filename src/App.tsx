@@ -1,6 +1,6 @@
-import { PageHeader } from "./components/Header";
-import { Search } from "./components/Search";
-import { TermList } from "./components/TermList";
+import { PageHeader } from "./components/Header/Header";
+import { Search } from "./components/Search/Search";
+import { TermList } from "./components/TermList/TermList";
 import { CrawlerContextProvider } from "./context/crawlerContext/CrawlerContext";
 import { GlobalStyle } from "./styles/global";
 

@@ -4,10 +4,8 @@ import {
   Header,
   LogoContainer,
   LogoImg,
-  LanguagueBtn,
-  LanguagesBtnWrapper,
   HeaderContainer,
-} from "./styles";
+} from "./Header.styles";
 
 export function PageHeader() {
   return (
@@ -16,12 +14,6 @@ export function PageHeader() {
         <LogoContainer>
           <LogoImg src={axurLogo} />
         </LogoContainer>
-
-        <LanguagesBtnWrapper>
-          <LanguagueBtn>PT</LanguagueBtn>
-          <LanguagueBtn>EN</LanguagueBtn>
-          <LanguagueBtn>ES</LanguagueBtn>
-        </LanguagesBtnWrapper>
       </HeaderContainer>
     </Header>
   );

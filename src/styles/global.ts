@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components"
+import { BACKGROUND_GRAY } from "../constants/color"
+import { mq } from "../constants/theme"
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -10,16 +12,18 @@ export const GlobalStyle = createGlobalStyle`
   body{
     font-family: "Inter", Arial, Helvetica, sans-serif;
     font-weight:400;
-    background: #e9edf0;
+    background: ${BACKGROUND_GRAY};
   }
 
   html{
-    @media only screen and (max-width:1080px) {
       font-size: 62.5%;
+      
+    @media screen and (max-width: ${mq.phone.wide.maxWidth}){
+      font-size:58%;
     }
 
-    @media only screen and (max-width:720px){
-      font-size:87.5%;
+    @media screen and (max-width: ${mq.phone.narrow.maxWidth}){
+        font-size: 51%;
     }
   }
 

@@ -1,6 +1,6 @@
 import { useCrawlerContext } from "../../context/crawlerContext/CrawlerContext";
-import { TermInfo } from "../TermInfo";
-import { Container, TermInfoContent, TermInfoHeading } from "./styles";
+import { TermInfo } from "../TermInfo/TermInfo";
+import { Container, TermInfoContent, TermInfoHeading } from "./TermList.styles";
 
 export function TermList() {
   const { terms } = useCrawlerContext();
@@ -13,8 +13,8 @@ export function TermList() {
           {terms
             .slice(0)
             .reverse()
-            .map((term) => (
-              <TermInfo term={term} />
+            .map((term, idx) => (
+              <TermInfo term={term} key={idx} />
             ))}
         </TermInfoContent>
       </Container>

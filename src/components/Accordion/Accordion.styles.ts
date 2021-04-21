@@ -1,12 +1,9 @@
 import styled from "styled-components"
+import { LIGHT_BLUE } from "../../constants/color"
 
 interface AccordionContainerProps {
   open: boolean
 }
-
-// export const AccordionContainer = styled.div<AccordionContainerProps>`
-//   background: ${(props:AccordionContainerProps) => (props.open ? 'blue' : '#000')};
-// `
 
 export const AccordionWrapper = styled.div`
 position: relative
@@ -29,16 +26,17 @@ export const AccordionContainer = styled.div<AccordionContainerProps>`
 `
 
 export const AccordionContent = styled.div`
-  margin-top: 20px;
-  height: 300px;
+  margin-top: 2rem;
+  height: 30rem;
   overflow: scroll;
 
   &::-webkit-scrollbar{
     width: 3px;
+    height:3px;
     border-radius: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #458986;
+    background-color: ${LIGHT_BLUE};
   }
 `

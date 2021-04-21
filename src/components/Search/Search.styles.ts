@@ -1,34 +1,35 @@
 import styled from 'styled-components'
+import { DARKER_GRAY, GRAY_WITH_OPACITY, ORANGE_RED,  WHITE } from '../../constants/color'
 
 export const SearchContainer = styled.div`
   max-width: 1024px;
-  padding: 20px;
+  padding: 2rem;
   margin: 0 auto;
 `
 
 export const SearchInput = styled.input`
-    background: white;
+    background: ${WHITE};
     width: 100%;
     border: none;
-    box-shadow: 4px 4px 4px 4px  rgba(255, 255, 255, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 4px 4px 4px 4px  ${GRAY_WITH_OPACITY};
+    border: 1px solid ${GRAY_WITH_OPACITY};
     box-sizing: border-box;
     border-radius: 50px;
-    height: 60px;
-    padding: 20px;
+    height: 6rem;
+    padding: 2rem;
     
   &, &::placeholder{
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 23px;
-    color: #414B5A;
+    font-size: 2rem;
+    line-height: 2.3rem;
+    color: ${DARKER_GRAY};
   }
 
   &:focus{
     border:none;
     outline: none;
-    box-shadow: inset 4px 4px 4px 4px  rgba(255, 255, 255, 0.4);
+    box-shadow: inset 4px 4px 4px 4px  ${GRAY_WITH_OPACITY};
   }
 `
 
@@ -36,7 +37,7 @@ export const SearchInputMessage = styled.span`
   display: inline-block;
   text-align: right;
   width: 100%;
-  padding: 10px;
-  font-size: 12px;
-  color: red;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: ${ORANGE_RED};
 `

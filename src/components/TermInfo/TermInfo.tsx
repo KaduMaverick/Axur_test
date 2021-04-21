@@ -3,14 +3,14 @@ import useSWR from "swr";
 // import { useCrawlerContext } from '../../CrawlContext'
 import { getCrawlTerm } from "../../services/crawlerService";
 import { Term } from "../../shared/interfaces/crawler.interface";
-import { Accordion } from "../Accordion";
+import { Accordion } from "../Accordion/Accordion";
 import {
   TermInfoCard,
   TermInfoCardHeading,
   TermInfoLink,
   TermInfoMessage,
   TermInfoStatus,
-} from "./styles";
+} from "./TermInfo.styles";
 
 interface ITermInfo {
   term: Term;
@@ -18,7 +18,7 @@ interface ITermInfo {
 
 export const TermInfo: React.FC<ITermInfo> = ({ term }) => {
   const [urls, setUrls] = useState(term.urls);
-  const [pollingInterval, setPollingInterval] = useState(3000);
+  const [pollingInterval, setPollingInterval] = useState(300);
 
   const { data } = useSWR(term.id, getCrawlTerm, {
     revalidateOnFocus: false,
@@ -31,6 +31,7 @@ export const TermInfo: React.FC<ITermInfo> = ({ term }) => {
     }
 
     if (data?.status === "done") {
+      console.log("true");
       setPollingInterval(0);
     }
   }, [data]);

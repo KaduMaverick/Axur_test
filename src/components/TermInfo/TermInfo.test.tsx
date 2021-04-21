@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { TermInfo } from "./index";
+import { TermInfo } from "./TermInfo";
 
 describe("TermInfo Render correctly", () => {
   it("Should have urls empty list", () => {

@@ -1,32 +1,33 @@
 import styled from "styled-components"
+import { DARKER_GRAY, SELAGO } from "../../constants/color"
 
 export const TermInfoCard = styled.div`
   position: relative;
-  background: white;
+  background: ${SELAGO};
   border-radius: 50px;
-  padding: 30px 30px;
-  margin-bottom: 20px;
+  padding: 3rem;
+  margin-bottom: 2rem;
 `
 export const TermInfoMessage = styled.span`
   display: inline-block;
-  margin-top: 5px;
+  margin-top: 0.5rem;
 `
 
 export const TermInfoCardHeading = styled.h4`
-  font-size: 18px;
+  font-size: 1.8rem;
 `
 
 export const TermInfoStatus = styled.span`
   position: absolute;
-  top: 20px;
-  right: 30px; 
+  top: 2rem;
+  right: 3rem; 
 `
 
 export const TermInfoLink = styled.a`
   display: inline-block;
-  color: #000;
+  color: ${DARKER_GRAY};
   text-decoration: none;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
   &:hover{
     text-decoration: underline;
   }

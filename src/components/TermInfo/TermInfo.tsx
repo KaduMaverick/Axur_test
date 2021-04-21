@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
-// import { useCrawlerContext } from '../../CrawlContext'
 import { getCrawlTerm } from "../../services/crawlerService";
 import { Term } from "../../shared/interfaces/crawler.interface";
 import { Accordion } from "../Accordion/Accordion";
@@ -26,15 +25,16 @@ export const TermInfo: React.FC<ITermInfo> = ({ term }) => {
   });
 
   useEffect(() => {
+    if (data?.status === "done") {
+      setPollingInterval(0);
+    }
+  }, [data?.status]);
+
+  useEffect(() => {
     if (data?.urls) {
       setUrls(data.urls);
     }
-
-    if (data?.status === "done") {
-      console.log("true");
-      setPollingInterval(0);
-    }
-  }, [data]);
+  }, [data?.urls]);
 
   return (
     <TermInfoCard>
@@ -47,7 +47,7 @@ export const TermInfo: React.FC<ITermInfo> = ({ term }) => {
           <div data-testid="urls-list">
             {urls.map((url: any, idx: number) => {
               return (
-                <>
+                <div key={idx}>
                   <TermInfoLink
                     href={url}
                     target="_blank"
@@ -56,8 +56,7 @@ export const TermInfo: React.FC<ITermInfo> = ({ term }) => {
                   >
                     {url}
                   </TermInfoLink>
-                  <br />
-                </>
+                </div>
               );
             })}
           </div>

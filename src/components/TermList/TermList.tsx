@@ -13,8 +13,8 @@ export function TermList() {
           {terms
             .slice(0)
             .reverse()
-            .map((term, idx) => (
-              <TermInfo term={term} key={idx} />
+            .map((term) => (
+              <TermInfo term={term} key={term.id} />
             ))}
         </TermInfoContent>
       </Container>
